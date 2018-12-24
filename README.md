@@ -50,3 +50,6 @@ MoaRpm rpm("star wars battlefront", MoaRpm::MOA_MODE::NTDLL);
 ```cpp
 MoaRpm rpm("star wars battlefront", MoaRpm::MOA_MODE::KERNEL);
 ```
+
+#### Downloads
+Don't feel like compiling the lib?  Just download prebuilt binaries [here](https://github.com/coltonon/MoaRpm/releases).  As a general rule of thumb tho, don't ever load unsigned drivers you didn't compile and verify...
