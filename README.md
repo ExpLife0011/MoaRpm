@@ -36,17 +36,17 @@ Yep, it's that easy.
 
 ## Modes
 
-*Standard* (ReadProcessMemory/WriteProcessMemory)
+**Standard** (ReadProcessMemory/WriteProcessMemory)
 ```cpp
 MoaRpm rpm("star wars battlefront", MoaRpm::MOA_MODE::STANDARD);
 ```
 
-*NTDLL* (ReadVirtualMemory/WriteVirtualMemory)
+**NTDLL** (ReadVirtualMemory/WriteVirtualMemory)
 ```cpp
 MoaRpm rpm("star wars battlefront", MoaRpm::MOA_MODE::NTDLL);
 ```
 
-*kernel* (MmCopyVirtualMemory)
+**Kernel Magic** (MmCopyVirtualMemory)
 ```cpp
 MoaRpm rpm("star wars battlefront", MoaRpm::MOA_MODE::KERNEL);
 ```
