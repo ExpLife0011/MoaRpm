@@ -138,7 +138,7 @@ void MoaRpm::readRaw(LPCVOID lpBaseAddress, LPVOID lpBuffer, SIZE_T nSize, SIZE_
 		BOOL bResult = FALSE;
 		DWORD junk = 0;
 
-		hDevice = CreateFileW(DRIVER_NAME, 0, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, 0, NULL);            // do not copy file attributes
+		hDevice = CreateFileW(DRIVER_NAME, 0, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, 0, NULL);
 
 		if (hDevice != INVALID_HANDLE_VALUE) {
 			bResult = DeviceIoControl(hDevice, IOCTL_READ_MEM, &rpm, sizeof(rpm), lpBuffer, nSize, &junk, (LPOVERLAPPED)NULL);
@@ -173,7 +173,7 @@ bool MoaRpm::writeRaw(LPCVOID lpBaseAddress, LPVOID lpBuffer, SIZE_T nSize, SIZE
 		BOOL bResult = FALSE;
 		DWORD junk = 0;
 
-		hDevice = CreateFileW(DRIVER_NAME, 0, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, 0, NULL);            // do not copy file attributes
+		hDevice = CreateFileW(DRIVER_NAME, 0, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, 0, NULL);
 
 		if (hDevice != INVALID_HANDLE_VALUE) {
 			bResult = DeviceIoControl(hDevice, IOCTL_WRITE_MEM, &rpm, sizeof(rpm), lpBuffer, nSize, &junk, (LPOVERLAPPED)NULL);
