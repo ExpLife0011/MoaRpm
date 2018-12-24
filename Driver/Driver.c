@@ -3,7 +3,7 @@
 #include <ntstrsafe.h> 
 #include <stdlib.h>
 
-#define IOCTL_DUMP_MEM CTL_CODE(FILE_DEVICE_UNKNOWN, 0x999, METHOD_OUT_DIRECT, FILE_ANY_ACCESS)
+#define IOCTL_READ_MEM CTL_CODE(FILE_DEVICE_UNKNOWN, 0x999, METHOD_OUT_DIRECT, FILE_ANY_ACCESS)
 #define IOCTL_WRITE_MEM CTL_CODE(FILE_DEVICE_UNKNOWN, 0x998, METHOD_OUT_DIRECT, FILE_ANY_ACCESS)
 
 PDEVICE_OBJECT pDeviceObject;
@@ -33,7 +33,6 @@ NTSTATUS Close(PDEVICE_OBJECT DeviceObject, PIRP irp)
 	irp->IoStatus.Status = STATUS_SUCCESS;
 	irp->IoStatus.Information = 0;
 	DbgPrintEx(DPFLTR_IHVDRIVER_ID, DPFLTR_ERROR_LEVEL, "kernel mod unloading");
-	NtGdiEngBitBlt();
 	IoCompleteRequest(irp, IO_NO_INCREMENT);
 	return STATUS_SUCCESS;
 }
@@ -91,7 +90,7 @@ NTSTATUS IOCTL(PDEVICE_OBJECT DeviceObject, PIRP irp) {
 
 	io = IoGetCurrentIrpStackLocation(irp);
 	switch (io->Parameters.DeviceIoControl.IoControlCode) {
-	case IOCTL_DUMP_MEM:
+	case IOCTL_READ_MEM:
 		memcpy(&UserLand, irp->AssociatedIrp.SystemBuffer, sizeof(UserLand));
 		UserBuffer = (PUCHAR)MmGetSystemAddressForMdlSafe(irp->MdlAddress, NormalPagePriority);
 		if (UserBuffer && UserLand.Addr != NULL) {
